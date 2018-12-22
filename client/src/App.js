@@ -4,6 +4,16 @@ import logo from "./logo.svg";
 import "./App.css";
 
 class App extends Component {
+  state = {
+    loggedIn: false
+  }
+
+  handleLogin = (event) => {
+    event.preventDefault();
+    console.log("login clicked!");
+    console.log(this);
+    this.setState({ loggedIn: true});
+  }
 
   componentDidMount() {
     console.log("componentDidMount lifecycle method ran!");
@@ -13,14 +23,16 @@ class App extends Component {
   }
 
   render() {
+    let banner = this.state.loggedIn ? "Woah! You're logged in!" : "UNAUTHORIZED USER";
     return (
       <div className="App">
+        <h1>{banner}</h1>
         <div className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Hello, welcome to Saturday's Live Coded Demo!</h2>
         </div>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          <button onClick={this.handleLogin}>Log In To Application</button>
         </p>
       </div>
     );
